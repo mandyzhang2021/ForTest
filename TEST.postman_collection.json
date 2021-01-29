@@ -1,0 +1,277 @@
+{
+	"info": {
+		"_postman_id": "ecff6333-9c4b-41e3-b01e-8731f39dbea8",
+		"name": "TEST",
+		"description": "ONLY FOR STUDY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "聚合api",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var type=pm.environment.get(\"type\");\r",
+							"console.log(type);\r",
+							"\r",
+							"pm.environment.set(\"type\", \"kexue\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"状态码为 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"返回结果主体中包含头条\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"头条\");\r",
+							"});\r",
+							"pm.test(\"json返回值\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.reason).to.eql(\"成功的返回!\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    console.log(pm.response.responseTime);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"//pm.test(\"多组json校验\", function () {\r",
+							"  //  var jsonData = pm.response.json();\r",
+							"   // pm.expect(jsonData[0].reason).to.eql(\"成功的返回!\");\r",
+							"//});\r",
+							"//\r",
+							"//pm.test(\"多层嵌套json\", function () {\r",
+							"  //  var jsonData = pm.response.json();\r",
+							"   // console.log(\"data数据呈现\"+jsonData.data);\r",
+							"   //   console.log(\"data中第一组数据呈现\"+jsonData.data[0]);\r",
+							"  //    console.log(\"data中第一组数据中的uniquekey呈现\"+jsonData.data[0].uniquekey);\r",
+							"  //  pm.expect(jsonData.value).to.eql(100);\r",
+							"//});\r",
+							"\r",
+							"pm.test(\"多层嵌套json\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"   console.log(\"data数据呈现\"+jsonData.result.data[0].uniquekey);\r",
+							"    pm.expect(jsonData.result.data[0].uniquekey).to.eql(\"94e127489e3bf80722baa7d842011377\");\r",
+							"});\r",
+							"\r",
+							"//控制台循环显示字段内容\r",
+							"pm.test(\"多层嵌套json\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    for(var i=0;i<10;i++){\r",
+							"    console.log(\"title的内容\"+jsonData.result.data[i].title);\r",
+							"   }\r",
+							"    pm.expect(jsonData.result.data[0].title).to.eql(\"追求卓越天更阔 献礼校庆展新篇——河北衡水中学2020年亮点回眸\");\r",
+							"});\r",
+							"\r",
+							"//文件字段校验,适用于返回内容与csv文件中内容一致\r",
+							"pm.test(\"断言type为\"+data.type, function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.value).to.eql(data.type);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://v.juhe.cn/toutiao/index?key=bbb87333c105b9a4caa30ae643566c3e&type=shehui",
+					"protocol": "http",
+					"host": [
+						"v",
+						"juhe",
+						"cn"
+					],
+					"path": [
+						"toutiao",
+						"index"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "bbb87333c105b9a4caa30ae643566c3e"
+						},
+						{
+							"key": "type",
+							"value": "shehui"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "聚合api Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var type=pm.environment.get(\"type\");\r",
+							"console.log(type);\r",
+							"\r",
+							"pm.environment.set(\"type\", \"kexue\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"状态码为 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"返回结果主体中包含社会\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"社会\");\r",
+							"});\r",
+							"pm.test(\"json返回值\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.reason).to.eql(\"成功的返回!\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    console.log(pm.response.responseTime);\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"//pm.test(\"多组json校验\", function () {\r",
+							"  //  var jsonData = pm.response.json();\r",
+							"   // pm.expect(jsonData[0].reason).to.eql(\"成功的返回!\");\r",
+							"//});\r",
+							"//\r",
+							"//pm.test(\"多层嵌套json\", function () {\r",
+							"  //  var jsonData = pm.response.json();\r",
+							"   // console.log(\"data数据呈现\"+jsonData.data);\r",
+							"   //   console.log(\"data中第一组数据呈现\"+jsonData.data[0]);\r",
+							"  //    console.log(\"data中第一组数据中的uniquekey呈现\"+jsonData.data[0].uniquekey);\r",
+							"  //  pm.expect(jsonData.value).to.eql(100);\r",
+							"//});\r",
+							"\r",
+							"pm.test(\"多层嵌套json\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"   console.log(\"data数据呈现\"+jsonData.result.data[0].uniquekey);\r",
+							"    pm.expect(jsonData.result.data[0].uniquekey).to.eql(\"94e127489e3bf80722baa7d842011377\");\r",
+							"});\r",
+							"\r",
+							"//控制台循环显示字段内容\r",
+							"pm.test(\"多层嵌套json\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    for(var i=0;i<10;i++){\r",
+							"    console.log(\"title的内容\"+jsonData.result.data[i].title);\r",
+							"   }\r",
+							"    pm.expect(jsonData.result.data[0].title).to.eql(\"追求卓越天更阔 献礼校庆展新篇——河北衡水中学2020年亮点回眸\");\r",
+							"});\r",
+							"\r",
+							"//文件字段校验,适用于返回内容与csv文件中内容一致\r",
+							"pm.test(\"断言type为\"+data.type, function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.value).to.eql(data.type);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://v.juhe.cn/toutiao/index?key=bbb87333c105b9a4caa30ae643566c3e&type={{type}}",
+					"protocol": "http",
+					"host": [
+						"v",
+						"juhe",
+						"cn"
+					],
+					"path": [
+						"toutiao",
+						"index"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "bbb87333c105b9a4caa30ae643566c3e"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "作文大全",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//将返回值存放在环境变量中\r",
+							"pm.environment.set(\"testreason\", pm.response.json().reason);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://zuowen.api.juhe.cn/zuowen/typeList?key=6d8c2ee6a7880cbefedaa47feb965bdf&id={{id}}",
+					"protocol": "http",
+					"host": [
+						"zuowen",
+						"api",
+						"juhe",
+						"cn"
+					],
+					"path": [
+						"zuowen",
+						"typeList"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "6d8c2ee6a7880cbefedaa47feb965bdf"
+						},
+						{
+							"key": "id",
+							"value": "{{id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
